@@ -6,10 +6,10 @@ public class Solution {
         int[][] dp =new int[len][len];
         for(int i=0;i<len;i++) dp[i][i]=0;
         for(int i=1;i<len;i++){//i is sublen
-            //compute[0..i],[1..i+1],[2..i+2]..[len-i-1..len-1]
+            //compute dp[0,i],dp[1,i+1],dp[2,i+2]..dp[len-i-1,len-1]
             for(int begin=0;begin<len-i;begin++){
                 int end = begin+i;
-                //dp[begin][end] = min{dp[begin][k]+dp[k][end]+q[begin]*q[k]*q[end]}(begin <= k < end)
+                //dp[begin][end] = min{dp[begin][k]+dp[k+1][end]+q[begin]*q[k+1]*q[end+1]}(begin <= k < end)
                 int tmp = Integer.MAX_VALUE;
                 for(int k=begin;k<end;k++){
                     int cur = dp[begin][k]+dp[k+1][end]+q[begin]*q[k+1]*q[end+1];
